@@ -1,0 +1,26 @@
+# 1064. Fixed Point
+# Given an array of distinct integers arr, where arr is sorted in ascending order,
+# return the smallest index i that satisfies arr[i] == i. If there is no such index, return -1.
+
+class Solution:
+    def fixedPoint(self, arr: List[int]) -> int:
+        # brute force
+        # for i in range(len(arr)):
+        #     if arr[i] == i:
+        #         return i
+        # return -1
+
+        # binary search
+        left, right = 0, len(arr) - 1
+        ret = -1
+        while left <= right:
+            mid = (left + right) // 2
+            if arr[mid] == mid:
+                ret = mid
+                right = mid - 1
+            elif arr[mid] < mid:
+                left = mid + 1
+            else:
+                right = mid - 1
+
+        return ret
